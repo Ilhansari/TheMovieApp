@@ -12,6 +12,8 @@
 		0123421D256905B600EE4E1A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0123421C256905B600EE4E1A /* NetworkManager.swift */; };
 		0123421F256914A500EE4E1A /* MovieDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0123421E256914A500EE4E1A /* MovieDetailModel.swift */; };
 		0123422125691A3A00EE4E1A /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0123422025691A3A00EE4E1A /* API.swift */; };
+		01609841256BF3C4005D7466 /* MovieDetailViewController+Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01609840256BF3C4005D7466 /* MovieDetailViewController+Networking.swift */; };
+		01609843256BF432005D7466 /* MovieDetailViewController+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01609842256BF432005D7466 /* MovieDetailViewController+Actions.swift */; };
 		016B9E29256BD80900DB4FB9 /* MainViewController+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016B9E28256BD80900DB4FB9 /* MainViewController+Search.swift */; };
 		016B9E2B256BD9E400DB4FB9 /* MainViewController+SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016B9E2A256BD9E400DB4FB9 /* MainViewController+SegmentedControl.swift */; };
 		016B9E2D256BDA2A00DB4FB9 /* MainViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016B9E2C256BDA2A00DB4FB9 /* MainViewController+TableView.swift */; };
@@ -51,6 +53,8 @@
 		0123421C256905B600EE4E1A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		0123421E256914A500EE4E1A /* MovieDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailModel.swift; sourceTree = "<group>"; };
 		0123422025691A3A00EE4E1A /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		01609840256BF3C4005D7466 /* MovieDetailViewController+Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieDetailViewController+Networking.swift"; sourceTree = "<group>"; };
+		01609842256BF432005D7466 /* MovieDetailViewController+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieDetailViewController+Actions.swift"; sourceTree = "<group>"; };
 		016B9E28256BD80900DB4FB9 /* MainViewController+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+Search.swift"; sourceTree = "<group>"; };
 		016B9E2A256BD9E400DB4FB9 /* MainViewController+SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+SegmentedControl.swift"; sourceTree = "<group>"; };
 		016B9E2C256BDA2A00DB4FB9 /* MainViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+TableView.swift"; sourceTree = "<group>"; };
@@ -105,6 +109,8 @@
 			children = (
 				0103B3B025699309006C210B /* MovieDetailView.swift */,
 				0103B3B225699313006C210B /* MovieDetailViewController.swift */,
+				01609840256BF3C4005D7466 /* MovieDetailViewController+Networking.swift */,
+				01609842256BF432005D7466 /* MovieDetailViewController+Actions.swift */,
 			);
 			path = MovieDetail;
 			sourceTree = "<group>";
@@ -481,10 +487,12 @@
 				01A8CAF62569B9CC00BC669B /* CastDetailView.swift in Sources */,
 				01A8CB04256A7B3700BC669B /* PersonDetailViewController.swift in Sources */,
 				01B11D122568420600082B29 /* AppDelegate.swift in Sources */,
+				01609843256BF432005D7466 /* MovieDetailViewController+Actions.swift in Sources */,
 				01B11D2F2568450300082B29 /* MainView.swift in Sources */,
 				01B11D352568575600082B29 /* MoviePersonModel.swift in Sources */,
 				01A8CAED2569A10B00BC669B /* Extensions+Double.swift in Sources */,
 				01A8CB0E256ADDC200BC669B /* MoviesVideoModel.swift in Sources */,
+				01609841256BF3C4005D7466 /* MovieDetailViewController+Networking.swift in Sources */,
 				01A8CAEF2569B79500BC669B /* CastDetailModel.swift in Sources */,
 				01A8CB02256A7B2800BC669B /* PersonDetailView.swift in Sources */,
 				01A8CAFD256A511F00BC669B /* PersonDetailsModel.swift in Sources */,

@@ -11,7 +11,7 @@ import UIKit
 final class MovieDetailViewController: UIViewController {
 
 	// MARK: view as a `Layoutable`
-	private var layoutableView: MovieDetailView {
+	var layoutableView: MovieDetailView {
 		guard let movieDetailView = view as? MovieDetailView else {
 			fatalError("view property has not been initialized yet, or not initialized as \(MovieDetailView.self).")
 		}
@@ -19,9 +19,9 @@ final class MovieDetailViewController: UIViewController {
 	}
 
 	// MARK: Properties
-	private var movieId: Int
-	private var networkManager: NetworkManager
-	private var videoKey: String?
+	var movieId: Int
+	var networkManager: NetworkManager
+	var videoKey: String?
 
 	override func loadView() {
 		view = MovieDetailView()
@@ -56,45 +56,9 @@ extension MovieDetailViewController {
 	}
 }
 
-// MARK: Networking
-extension MovieDetailViewController {
-	private func fetchMovieDetail(movieId: Int) {
-		layoutableView.showActivityIndicator()
-		networkManager.getMovieDetails(movieId: movieId) { result in
-			self.layoutableView.hideActivityIndicator()
-			self.layoutableView.configureView(result)
-		}
-	}
-
-	private func fetchMovieVideos() {
-		layoutableView.showActivityIndicator()
-		networkManager.getMovieVideos(movieId: movieId) { response in
-			self.layoutableView.hideActivityIndicator()
-			for videoKey in response.results {
-				self.videoKey = videoKey.key
-			}
-		}
-	}
-}
-
-// MARK: Actions
-extension MovieDetailViewController {
-	@objc func didTapCastDetails() {
-		let castDetailViewController = CastDetailViewController(movieId: movieId)
-		self.navigationController?.pushViewController(castDetailViewController, animated: true)
-	}
-
-	@objc func didTapVideoTrailer() {
-		guard let videoKey = self.videoKey else {
-			return
-		}
-		loadYoutube(videoKey: videoKey)
-	}
-}
-
 // MARK: Setup Video Movies Trailer
 extension MovieDetailViewController {
-	private func loadYoutube(videoKey: String) {
+	func loadYoutube(videoKey: String) {
 
 		guard  let appURL = URL(string: "youtube://www.youtube.com/watch?v=\(videoKey)"),
 			let webURL = URL(string: "https://www.youtube.com/watch?v=\(videoKey)")
