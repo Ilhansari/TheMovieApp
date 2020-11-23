@@ -18,3 +18,6 @@ Clone or download the project and run `pod install`
 - Writing tests
 - Writing different design patterns
 - Fix known [issues](https://github.com/Ilhansari/TheMovieApp/issues).
+
+# License
+TheMovieApp is available under the MIT license. See the LICENSE file for more info.
