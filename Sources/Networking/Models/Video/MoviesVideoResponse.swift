@@ -9,25 +9,25 @@
 import Foundation
 
 struct MoviesVideoResponse {
-	var results: [MoviesVideoModel] = []
+	var results: [MoviesVideo] = []
 }
 
 extension MoviesVideoResponse: Codable {
 	enum CodingKeys: String, CodingKey {
 		case results
 	}
-
+	
 	init(from decoder: Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
-
-		results = try container.decodeIfPresent([MoviesVideoModel].self, forKey: .results) ?? []
+		
+		results = try container.decodeIfPresent([MoviesVideo].self, forKey: .results) ?? []
 	}
-
+	
 	func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
-
+		
 		try container.encodeIfPresent(results, forKey: .results)
-
+		
 	}
-
+	
 }

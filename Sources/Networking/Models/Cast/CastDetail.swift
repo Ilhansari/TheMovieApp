@@ -8,29 +8,31 @@
 
 import Foundation
 
-struct CastDetailModel {
+struct CastDetail {
 
 	let name: String?
 	let originalTitle: String?
-	let profilPath: String?
+	let profilePath: String?
 	let posterPath: String?
 	let character: String?
 
-	var profileURL: URL {
-		return URL(string: "https://image.tmdb.org/t/p/w500\(profilPath ?? "")")!
+	var profileURL: URL? {
+		guard let path = profilePath else { return nil }
+		return URL(string: "https://image.tmdb.org/t/p/w500\(path)")
 	}
 
-	var posterURL: URL {
-		return URL(string: "https://image.tmdb.org/t/p/w500\(posterPath ?? "")")!
+	var posterURL: URL? {
+		guard let path = posterPath else { return nil }
+		return URL(string: "https://image.tmdb.org/t/p/w500\(path)")
 	}
 }
 
-extension CastDetailModel: Codable {
+extension CastDetail: Codable {
 	enum CodingKeys: String, CodingKey {
 		case name
-		case originalTitle = "original_title"
-		case profilPath = "profile_path"
-		case posterPath = "poster_path"
+		case originalTitle
+		case profilePath
+		case posterPath
 		case character
 	}
 
@@ -38,17 +40,17 @@ extension CastDetailModel: Codable {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 
 		name = try container.decodeIfPresent(String.self, forKey: .name)
-		originalTitle = try container.decodeIfPresent(String.self, forKey: .name)
-		profilPath = try container.decodeIfPresent(String.self, forKey: .profilPath)
+		originalTitle = try container.decodeIfPresent(String.self, forKey: .originalTitle)
+		profilePath = try container.decodeIfPresent(String.self, forKey: .profilePath)
 		posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath)
 		character = try container.decodeIfPresent(String.self, forKey: .character)
 	}
-
+	
 	func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 
 		try container.encodeIfPresent(name, forKey: .name)
-		try container.encodeIfPresent(profilPath, forKey: .profilPath)
+		try container.encodeIfPresent(profilePath, forKey: .profilePath)
 		try container.encodeIfPresent(posterPath, forKey: .posterPath)
 		try container.encodeIfPresent(character, forKey: .character)
 	}

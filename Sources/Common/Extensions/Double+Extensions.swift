@@ -1,5 +1,5 @@
 //
-//  Extensions+String.swift
+//  Double+Extensions.swift
 //  TheMovieApp
 //
 //  Created by ilhan sarı on 21.11.2020.

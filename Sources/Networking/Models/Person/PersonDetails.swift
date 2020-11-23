@@ -8,24 +8,25 @@
 
 import Foundation
 
-struct PersonDetailsModel {
+struct PersonDetails {
 
 	let biography: String?
 	let birthday: String?
 	let placeOfBirth: String?
 	let profilePath: String?
 
-	var posterURL: URL {
-		return URL(string: "https://image.tmdb.org/t/p/w500\(profilePath ?? "")")!
+	var posterURL: URL? {
+		guard let path = profilePath else { return nil }
+		return URL(string: "https://image.tmdb.org/t/p/w500\(path)")
 	}
 }
 
-extension PersonDetailsModel: Codable {
+extension PersonDetails: Codable {
 	enum CodingKeys: String, CodingKey {
 		case biography
 		case birthday
-		case placeOfBirth = "place_of_birth"
-		case profilePath = "profile_path"
+		case placeOfBirth
+		case profilePath
 	}
 
 	init(from decoder: Decoder) throws {
@@ -35,7 +36,7 @@ extension PersonDetailsModel: Codable {
 		birthday = try container.decodeIfPresent(String.self, forKey: .birthday)
 		placeOfBirth = try container.decodeIfPresent(String.self, forKey: .placeOfBirth)
 		profilePath = try container.decodeIfPresent(String.self, forKey: .profilePath)
-
+		
 	}
 
 	func encode(to encoder: Encoder) throws {

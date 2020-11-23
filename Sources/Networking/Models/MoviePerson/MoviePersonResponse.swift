@@ -12,14 +12,14 @@ struct MoviePersonResponse {
 	let page: Int?
 	let totalResults: Int?
 	let totalPages: Int?
-	var results: [MoviePersonModel] = []
+	var results: [MoviePerson] = []
 }
 
 extension MoviePersonResponse: Codable {
 	enum CodingKeys: String, CodingKey {
 		case page
-		case totalResults = "total_results"
-		case totalPages = "total_pages"
+		case totalResults
+		case totalPages
 		case results
 	}
 
@@ -29,7 +29,7 @@ extension MoviePersonResponse: Codable {
 		page = try container.decodeIfPresent(Int.self, forKey: .page)
 		totalResults = try container.decodeIfPresent(Int.self, forKey: .totalResults)
 		totalPages = try container.decodeIfPresent(Int.self, forKey: .totalPages)
-		results = try container.decodeIfPresent([MoviePersonModel].self, forKey: .results) ?? []
+		results = try container.decodeIfPresent([MoviePerson].self, forKey: .results) ?? []
 	}
 
 	func encode(to encoder: Encoder) throws {

@@ -153,7 +153,7 @@ extension MovieDetailView {
 		activityIndicator.startAnimating()
 		activityIndicator.isHidden = false
 	}
-
+	
 	func hideActivityIndicator() {
 		activityIndicator.stopAnimating()
 		activityIndicator.isHidden = true
@@ -162,7 +162,7 @@ extension MovieDetailView {
 
 // MARK: Configure View
 extension MovieDetailView {
-	func configureView(_ model: MovieDetailModel) {
+	func configureView(_ model: MovieDetail) {
 		coverImageView.kf.setImage(with: model.posterURL)
 		titleLabel.text = model.title
 		ratingLabel.text = model.voteAverage?.ratingText

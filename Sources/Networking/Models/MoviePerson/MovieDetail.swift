@@ -8,31 +8,34 @@
 
 import UIKit
 
-struct MovieDetailModel: Codable {
+struct MovieDetail: Codable {
 	let adult: Bool?
 	let id: Int?
-	let originalTitle, overview: String?
+	let originalTitle: String?
+	let overview: String?
 	let posterPath: String?
 	let releaseDate: String?
 	let title: String?
 	let video: Bool?
 	let voteAverage: Double?
 
-	var posterURL: URL {
-		return URL(string: "https://image.tmdb.org/t/p/w500\(posterPath ?? "")")!
+	var posterURL: URL? {
+		guard let path = posterPath else {return nil}
+		return URL(string: "https://image.tmdb.org/t/p/w500\(path)")
 	}
 }
 
-extension MovieDetailModel {
+extension MovieDetail {
 	enum CodingKeys: String, CodingKey {
 		case adult
 		case id
-		case originalTitle = "original_title"
+		case originalTitle
 		case overview
-		case posterPath = "poster_path"
-		case releaseDate = "release_date"
-		case title, video
-		case voteAverage = "vote_average"
+		case posterPath
+		case releaseDate
+		case title
+		case video
+		case voteAverage
 	}
 
 	init(from decoder: Decoder) throws {

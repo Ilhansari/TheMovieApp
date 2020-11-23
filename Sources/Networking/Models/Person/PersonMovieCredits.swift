@@ -8,24 +8,25 @@
 
 import Foundation
 
-struct PersonMovieCreditsModel {
+struct PersonMovieCredits {
 	let originalTitle: String?
 	let profilePath: String?
 
-	var profileURL: URL {
-		return URL(string: "https://image.tmdb.org/t/p/w500\(profilePath ?? "")")!
+	var profileURL: URL? {
+		guard let path = profilePath else { return nil }
+		return URL(string: "https://image.tmdb.org/t/p/w500\(path)")
 	}
 }
 
-extension PersonMovieCreditsModel: Codable {
+extension PersonMovieCredits: Codable {
 	enum CodingKeys: String, CodingKey {
 		case originalTitle
-		case profilePath = "profile_path"
+		case profilePath
 	}
 
 	init(from decoder: Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
-
+		
 		originalTitle = try container.decodeIfPresent(String.self, forKey: .originalTitle)
 		profilePath = try container.decodeIfPresent(String.self, forKey: .profilePath)
 

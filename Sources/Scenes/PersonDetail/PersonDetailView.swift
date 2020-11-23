@@ -86,7 +86,7 @@ final class PersonDetailView: UIView {
 		let layout = UICollectionViewFlowLayout()
 		let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
 		layout.scrollDirection = .horizontal
-		collectionView.backgroundColor = .lightGray
+		collectionView.backgroundColor = .white
 		collectionView.showsHorizontalScrollIndicator = false
 		collectionView.register(CastCell.self, forCellWithReuseIdentifier: "CastCell")
 		return collectionView
@@ -128,7 +128,7 @@ extension PersonDetailView {
 
 // MARK: Configure View
 extension PersonDetailView {
-	func configureView(_ model: PersonDetailsModel) {
+	func configureView(_ model: PersonDetails) {
 		profileImageView.kf.setImage(with: model.posterURL)
 		biographyLabel.text = model.biography
 		birthdayLabel.text = model.birthday

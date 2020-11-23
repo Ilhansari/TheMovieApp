@@ -1,5 +1,5 @@
 //
-//  MovieVideoModel.swift
+//  CastResponse.swift
 //  TheMovieApp
 //
 //  Created by ilhan sarı on 22.11.2020.
@@ -8,26 +8,28 @@
 
 import Foundation
 
-struct MoviesVideoModel {
-	let key: String?
+import UIKit
+
+struct CastResponse {
+	var cast: [CastDetail] = []
 }
 
-extension MoviesVideoModel: Codable {
+extension CastResponse: Codable {
 	enum CodingKeys: String, CodingKey {
-		case id
-		case key
+		case cast
 	}
 
 	init(from decoder: Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 
-		key = try container.decodeIfPresent(String.self, forKey: .key)
-
+		cast = try container.decodeIfPresent([CastDetail].self, forKey: .cast) ?? []
 	}
 
 	func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 
-		try container.encodeIfPresent(key, forKey: .key)
+		try container.encodeIfPresent(cast, forKey: .cast)
+
 	}
+
 }

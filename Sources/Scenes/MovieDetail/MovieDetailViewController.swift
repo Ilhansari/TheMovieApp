@@ -11,17 +11,17 @@ import UIKit
 final class MovieDetailViewController: UIViewController {
 
 	// MARK: view as a `Layoutable`
-	var layoutableView: MovieDetailView {
+	private var layoutableView: MovieDetailView {
 		guard let movieDetailView = view as? MovieDetailView else {
-			fatalError("view property has not been initialized yet, or not initialized as \(MovieDetailView.self).")
+			fatalError("view property has not been initialized yet, or not initialized as MovieDetailView.")
 		}
 		return movieDetailView
 	}
 
 	// MARK: Properties
-	var movieId: Int
-	var networkManager: NetworkManager
-	var videoKey: String?
+	private var movieId: Int
+	private var networkManager: NetworkManager
+	private var videoKey: String?
 
 	override func loadView() {
 		view = MovieDetailView()
@@ -53,6 +53,44 @@ extension MovieDetailViewController {
 		layoutableView.trailerButton.addTarget(self, action: #selector(didTapVideoTrailer), for: .touchUpInside)
 
 		self.edgesForExtendedLayout = []
+	}
+}
+
+// MARK: Networking
+extension MovieDetailViewController {
+	private func fetchMovieDetail(movieId: Int) {
+		layoutableView.showActivityIndicator()
+		networkManager.getMovieDetails(movieId: movieId) { [weak self] result in
+			guard let self = self else { return }
+			self.layoutableView.hideActivityIndicator()
+			self.layoutableView.configureView(result)
+		}
+	}
+
+	private func fetchMovieVideos() {
+		layoutableView.showActivityIndicator()
+		networkManager.getMovieVideos(movieId: movieId) { [weak self] response in
+			guard let self = self else { return }
+			self.layoutableView.hideActivityIndicator()
+			for videoKey in response.results {
+				self.videoKey = videoKey.key
+			}
+		}
+	}
+}
+
+// MARK: Actions
+extension MovieDetailViewController {
+	@objc func didTapCastDetails() {
+		let castDetailViewController = CastDetailViewController(movieId: movieId)
+		self.navigationController?.pushViewController(castDetailViewController, animated: true)
+	}
+
+	@objc func didTapVideoTrailer() {
+		guard let videoKey = self.videoKey else {
+			return
+		}
+		loadYoutube(videoKey: videoKey)
 	}
 }
 

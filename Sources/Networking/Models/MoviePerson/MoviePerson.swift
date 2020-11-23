@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MoviePersonModel {
+struct MoviePerson {
 	let knownForDepartment: String?
 	let id: Int?
 	let profilePath: String?
@@ -19,26 +19,28 @@ struct MoviePersonModel {
 	let overview: String?
 	let releaseDate: String?
 	
-	var posterURL: URL {
-		return URL(string: "https://image.tmdb.org/t/p/w500\(posterPath ?? "")")!
+	var posterURL: URL? {
+		guard let path = posterPath else { return nil }
+		return URL(string: "https://image.tmdb.org/t/p/w500\(path)")
 	}
 
-	var profileURL: URL {
-		return URL(string: "https://image.tmdb.org/t/p/w500\(profilePath ?? "")")!
+	var profileURL: URL? {
+		guard let path = profilePath else { return nil }
+		return URL(string: "https://image.tmdb.org/t/p/w500\(path)")
 	}
 }
 
-extension MoviePersonModel: Codable {
+extension MoviePerson: Codable {
 	enum CodingKeys: String, CodingKey {
-		case knownForDepartment = "known_for_department"
+		case knownForDepartment
 		case id
-		case profilePath = "profile_path"
+		case profilePath
 		case name
-		case posterPath = "poster_path"
+		case posterPath
 		case title
-		case voteAverage = "vote_average"
+		case voteAverage
 		case overview
-		case releaseDate = "release_date"
+		case releaseDate
 	}
 
 	init(from decoder: Decoder) throws {
