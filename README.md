@@ -2,6 +2,10 @@
 
 An Example iOS Application working with [The Movie DB API ](https://developers.themoviedb.org/3).
 
+  [![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/Ilhansari/TheMovieApp/blob/master/LICENSE)
+  [![iOS](https://img.shields.io/badge/platform-iOS-green.svg)](https://github.com/Ilhansari/TheMovieApp)
+  [![Xcode](https://img.shields.io/badge/Xcode-10%2B-green.svg)](https://github.com/Ilhansari/TheMovieApp)
+
 <img width="793" alt="Screenshot 2020-11-24 at 00 37 41" src="https://user-images.githubusercontent.com/37653470/100018304-5286d800-2ded-11eb-9ba3-2e60b0cb5df7.png">
 
 ## How to run
