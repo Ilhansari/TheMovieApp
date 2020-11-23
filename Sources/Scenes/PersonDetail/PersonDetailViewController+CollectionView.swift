@@ -8,7 +8,6 @@
 
 import UIKit
 
-//MARK: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
 extension PersonDetailViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return castsModel.count
@@ -24,4 +23,3 @@ extension PersonDetailViewController: UICollectionViewDataSource, UICollectionVi
 		return CGSize(width: layoutableView.castCollectionView.frame.size.height, height: layoutableView.castCollectionView.frame.size.height)
 	}
 }
-

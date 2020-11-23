@@ -75,11 +75,11 @@ extension MoviesService: TargetType {
 			return .requestParameters(
 				parameters: ["api_key": MoviesService.apiKey], encoding: URLEncoding.default)
 		case .getSearchMovie(let query):
-			return .requestParameters(parameters: ["api_key": MoviesService.apiKey, "query" : query, "include_adult" : false], encoding: URLEncoding.default)
+			return .requestParameters(parameters: ["api_key": MoviesService.apiKey, "query": query, "include_adult": false], encoding: URLEncoding.default)
 		}
 	}
 
-	var headers: [String : String]? {
+	var headers: [String: String]? {
 		return ["Content-Type": "application/json"]
 	}
 

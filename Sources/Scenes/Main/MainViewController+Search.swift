@@ -8,7 +8,7 @@
 
 import UIKit
 
-//MARK: UISearchViewControllerDelegate
+// MARK: UISearchViewControllerDelegate
 extension MainViewController: UISearchResultsUpdating {
 	func updateSearchResults(for searchController: UISearchController) {
 		let searchBar = searchController.searchBar
@@ -17,7 +17,7 @@ extension MainViewController: UISearchResultsUpdating {
 	}
 }
 
-//MARK: Filtering movie/person in Search Bar
+// MARK: Filtering movie/person in Search Bar
 extension MainViewController {
 	func filterContentForSearchText(_ searchText: String) {
 		if isSearchBarEmpty {

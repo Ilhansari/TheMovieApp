@@ -14,8 +14,8 @@
             filePath = "Sources/Common/Cell/CastCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "configure(model:)"
             landmarkType = "7">
          </BreakpointContent>

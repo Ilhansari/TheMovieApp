@@ -8,7 +8,6 @@
 
 import UIKit
 
-//MARK: Networking
 extension MainViewController {
 	func fetchPopularMovies(page: Int) {
 		state = .loading
@@ -24,7 +23,7 @@ extension MainViewController {
 	func fetchPopularPerson() {
 		state = .loading
 		moviePersonModel = []
-		networkManager.getPopularPersonList() { personResponse in
+		networkManager.getPopularPersonList { personResponse in
 			self.state = .ready
 			self.moviePersonModel.append(contentsOf: personResponse.results)
 			self.filteredMoviePersonModel = self.moviePersonModel
@@ -33,4 +32,3 @@ extension MainViewController {
 	}
 
 }
-

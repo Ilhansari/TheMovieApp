@@ -12,7 +12,7 @@ import Kingfisher
 
 final class MovieDetailView: UIView {
 
-	//MARK: User Interface
+	// MARK: User Interface
 	private lazy var coverImageView: UIImageView = {
 		let imageView = UIImageView()
 		imageView.contentMode = .scaleToFill
@@ -86,7 +86,7 @@ final class MovieDetailView: UIView {
 	}
 }
 
-//MARK: Initialize UI and Constraints
+// MARK: Initialize UI and Constraints
 extension MovieDetailView {
 	private func setupViews() {
 		backgroundColor = .white
@@ -147,7 +147,7 @@ extension MovieDetailView {
 	}
 }
 
-//MARK: Activity Indicator Hide/Show
+// MARK: Activity Indicator Hide/Show
 extension MovieDetailView {
 	func showActivityIndicator() {
 		activityIndicator.startAnimating()
@@ -160,7 +160,7 @@ extension MovieDetailView {
 	}
 }
 
-//MARK: Configure View
+// MARK: Configure View
 extension MovieDetailView {
 	func configureView(_ model: MovieDetailModel) {
 		coverImageView.kf.setImage(with: model.posterURL)

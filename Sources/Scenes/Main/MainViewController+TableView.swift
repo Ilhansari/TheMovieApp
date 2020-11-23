@@ -8,7 +8,6 @@
 
 import UIKit
 
-//MARK: UITableViewDataSource, UITableViewDelegate
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if isFiltering {

@@ -12,7 +12,7 @@ import Kingfisher
 
 final class CastCell: UICollectionViewCell {
 
-	//MARK: User Interface
+	// MARK: User Interface
 	private lazy var posterImageView: UIImageView = {
 		let imageView = UIImageView()
 		return imageView
@@ -55,10 +55,9 @@ final class CastCell: UICollectionViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
 }
 
-//MARK: Configure Model
+// MARK: Configure Model
 extension CastCell {
 	func configure(model: CastDetailModel) {
 		posterImageView.kf.setImage(with: model.posterURL)
@@ -67,7 +66,7 @@ extension CastCell {
 	}
 }
 
-//MARK: Configure View
+// MARK: Configure View
 extension CastCell {
 	private func setupViews() {
 

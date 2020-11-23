@@ -11,7 +11,7 @@ import SnapKit
 
 final class MainView: UIView {
 
-	//MARK: User Interface
+	// MARK: User Interface
 	lazy var tableView: UITableView = {
 		let tableView = UITableView(frame: .zero, style: .plain)
 		tableView.backgroundColor = .white
@@ -64,7 +64,7 @@ final class MainView: UIView {
 	}
 }
 
-//MARK: Initialize UI and Constraints
+// MARK: Initialize UI and Constraints
 extension MainView {
 	private func setupViews() {
 		backgroundColor = .white
@@ -114,7 +114,7 @@ extension MainView {
 	}
 }
 
-//MARK: Activity Indicator and Empty View Hide/Show
+// MARK: Activity Indicator and Empty View Hide/Show
 extension MainView {
 	func showActivityIndicator() {
 		activityIndicator.startAnimating()

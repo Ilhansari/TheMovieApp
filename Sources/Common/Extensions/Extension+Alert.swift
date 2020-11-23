@@ -6,7 +6,6 @@
 //  Copyright © 2019 İlhan Sarı. All rights reserved.
 //
 
-
 import UIKit
 
 extension UIViewController {

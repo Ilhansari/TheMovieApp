@@ -31,4 +31,3 @@ extension MoviesVideoResponse: Codable {
 	}
 
 }
-

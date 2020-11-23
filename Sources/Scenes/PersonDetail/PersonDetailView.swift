@@ -12,7 +12,7 @@ import Kingfisher
 
 final class PersonDetailView: UIView {
 
-	//MARK: User Interface
+	// MARK: User Interface
 	lazy var scrollView: UIScrollView = {
 		let view = UIScrollView()
 		return view
@@ -104,6 +104,7 @@ final class PersonDetailView: UIView {
 		super.init(frame: frame)
 		setupViews()
 		setupLayout()
+		bottomAreaSetupLayout()
 	}
 
 	required init?(coder: NSCoder) {
@@ -112,7 +113,7 @@ final class PersonDetailView: UIView {
 
 }
 
-//MARK: Activity Indicator Hide/Show
+// MARK: Activity Indicator Hide/Show
 extension PersonDetailView {
 	func showActivityIndicator() {
 		activityIndicator.startAnimating()
@@ -125,7 +126,7 @@ extension PersonDetailView {
 	}
 }
 
-//MARK: Configure View
+// MARK: Configure View
 extension PersonDetailView {
 	func configureView(_ model: PersonDetailsModel) {
 		profileImageView.kf.setImage(with: model.posterURL)
@@ -135,7 +136,7 @@ extension PersonDetailView {
 	}
 }
 
-//MARK: Initialize UI and Constraints
+// MARK: Initialize UI and Constraints
 extension PersonDetailView {
 	private func setupViews() {
 		backgroundColor = .white
@@ -211,6 +212,13 @@ extension PersonDetailView {
 			make.height.equalTo(80)
 		}
 
+		activityIndicator.snp.makeConstraints { make in
+			make.center.equalToSuperview()
+			make.width.height.equalTo(50)
+		}
+	}
+
+	private func bottomAreaSetupLayout() {
 		biographyTitleLabel.snp.makeConstraints { make in
 			make.top.equalTo(profileImageView.snp.bottom).offset(24)
 			make.leading.trailing.equalToSuperview().inset(6)
@@ -219,11 +227,6 @@ extension PersonDetailView {
 		biographyLabel.snp.makeConstraints { make in
 			make.leading.trailing.equalToSuperview().inset(6)
 			make.top.equalTo(biographyTitleLabel.snp.bottom).offset(8)
-		}
-
-		activityIndicator.snp.makeConstraints { make in
-			make.center.equalToSuperview()
-			make.width.height.equalTo(50)
 		}
 
 	}

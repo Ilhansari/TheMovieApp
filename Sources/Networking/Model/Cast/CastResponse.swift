@@ -33,4 +33,3 @@ extension CastResponse: Codable {
 	}
 
 }
-

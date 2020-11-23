@@ -10,7 +10,7 @@ import UIKit
 
 final class CastDetailViewController: UIViewController {
 
-	//MARK: view as a `Layoutable`
+	// MARK: view as a `Layoutable`
 	var layoutableView: CastDetailView {
 	guard let castDetailView = view as? CastDetailView else {
 		fatalError("view property has not been initialized yet, or not initialized as \(CastDetailView.self).")
@@ -18,7 +18,7 @@ final class CastDetailViewController: UIViewController {
 	return castDetailView
 }
 
-	//MARK: Properties
+	// MARK: Properties
 	let networkManager = NetworkManager()
 	var castDetailModel = [CastDetailModel]()
 	var movieId: Int?
@@ -40,7 +40,7 @@ final class CastDetailViewController: UIViewController {
 	}
 }
 
-//MARK: Configure TableView
+// MARK: Configure TableView
 extension CastDetailViewController {
 	private func setupTableView() {
 		layoutableView.tableView.delegate = self

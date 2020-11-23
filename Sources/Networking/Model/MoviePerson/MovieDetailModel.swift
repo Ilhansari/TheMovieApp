@@ -23,7 +23,6 @@ struct MovieDetailModel: Codable {
 	}
 }
 
-
 extension MovieDetailModel {
 	enum CodingKeys: String, CodingKey {
 		case adult
@@ -65,4 +64,3 @@ extension MovieDetailModel {
 		try container.encodeIfPresent(voteAverage, forKey: .voteAverage)
 	}
 }
-

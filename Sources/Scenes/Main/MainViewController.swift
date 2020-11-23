@@ -67,7 +67,7 @@ final class MainViewController: UIViewController {
 
 }
 
-//MARK: Configure TableView, SearchBar
+// MARK: Configure TableView, SearchBar
 extension MainViewController {
 	private func setupSearchBar() {
 		layoutableView.tableView.tableHeaderView = searchController.searchBar
@@ -78,7 +78,7 @@ extension MainViewController {
 		searchController.searchResultsUpdater = self
 		searchController.obscuresBackgroundDuringPresentation = false
 		definesPresentationContext = true
-		layoutableView.tableView.setContentOffset(CGPoint(x: 0,y: self.searchController.searchBar.frame.size.height), animated: false)
+		layoutableView.tableView.setContentOffset(CGPoint(x: 0, y: self.searchController.searchBar.frame.size.height), animated: false)
 	}
 
 	private func setupTableView() {

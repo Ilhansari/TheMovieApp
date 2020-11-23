@@ -8,7 +8,6 @@
 
 import UIKit
 
-//MARK: Networking
 extension CastDetailViewController {
 	 func fetchCastDetails() {
 		guard let id = self.movieId else { return }

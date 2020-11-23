@@ -13,7 +13,7 @@ protocol NetworkProtocol {
 	func getMovieDetails(movieId: Int, completionHandler: @escaping (MovieDetailModel) -> Void)
 	func getPopularPersonList(completionHandler: @escaping (MoviePersonResponse) -> Void)
 	func getPersonDetails(personId: Int, completionHandler: @escaping (PersonDetailsModel) -> Void)
-	func searchMoviePerson(query: String,  completionHandler: @escaping (MoviePersonResponse) -> Void)
+	func searchMoviePerson(query: String, completionHandler: @escaping (MoviePersonResponse) -> Void)
 	func getMovieCastDetails(movieId: Int, completionHandler: @escaping (CastResponse) -> Void)
 	func getMovieVideos(movieId: Int, completionHandler: @escaping (MoviesVideoResponse) -> Void)
 	func getPersonCastDetails(movieId: Int, completionHandler: @escaping (CastResponse) -> Void) 

@@ -12,7 +12,7 @@ import Kingfisher
 
 final class CommonCell: UITableViewCell {
 
-	//MARK: User Interface
+	// MARK: User Interface
 	private lazy var posterImageView: UIImageView = {
 		let imageView = UIImageView()
 		imageView.contentMode = .scaleAspectFit
@@ -30,7 +30,6 @@ final class CommonCell: UITableViewCell {
 		label.isHidden = false
 		return label
 	}()
-
 
 	private lazy var titleLabel: UILabel = {
 		let label = UILabel()
@@ -73,7 +72,7 @@ final class CommonCell: UITableViewCell {
 
 }
 
-//MARK: Configure Model
+// MARK: Configure Model
 extension CommonCell {
 	func configure(model: MoviePersonModel, isSectionMovie: Bool) {
 		if isSectionMovie {
@@ -99,7 +98,7 @@ extension CommonCell {
 	}
 }
 
-//MARK: Configure View
+// MARK: Configure View
 extension CommonCell {
 	private func setupViews() {
 

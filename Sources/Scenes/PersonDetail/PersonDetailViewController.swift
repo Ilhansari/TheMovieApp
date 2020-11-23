@@ -11,7 +11,7 @@ import SnapKit
 
 final class PersonDetailViewController: UIViewController {
 
-	//MARK: view as a `Layoutable`
+	// MARK: view as a `Layoutable`
 	var layoutableView: PersonDetailView {
 		guard let personDetailView = view as? PersonDetailView else {
 			fatalError("view property has not been initialized yet, or not initialized as \(PersonDetailView.self).")
@@ -19,7 +19,7 @@ final class PersonDetailViewController: UIViewController {
 		return personDetailView
 	}
 
-	//MARK: Properties
+	// MARK: Properties
 	var personId: Int
 	var networkManager: NetworkManager
 	var castsModel = [CastDetailModel]()
@@ -44,7 +44,7 @@ final class PersonDetailViewController: UIViewController {
 	}
 }
 
-//MARK: Setup View
+// MARK: Setup View
 extension PersonDetailViewController {
 	private func setupView() {
 		fetchPersonDetail(personId: personId)
