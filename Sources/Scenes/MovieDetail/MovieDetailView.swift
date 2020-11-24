@@ -105,7 +105,7 @@ extension MovieDetailView {
 
 		coverImageView.snp.makeConstraints { make in
 			make.leading.trailing.equalToSuperview()
-			make.height.equalToSuperview().multipliedBy(0.3)
+			make.height.equalToSuperview().multipliedBy(0.4)
 			make.top.equalToSuperview()
 		}
 

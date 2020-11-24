@@ -27,9 +27,13 @@ final class CastDetailViewController: UIViewController {
 		view = CastDetailView()
 	}
 
-	convenience init(movieId: Int) {
-		self.init()
+	init(movieId: Int) {
+		super.init(nibName: nil, bundle: nil)
 		self.movieId = movieId
+	}
+
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
 	}
 
 	override func viewDidLoad() {
