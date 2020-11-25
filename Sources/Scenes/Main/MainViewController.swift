@@ -182,7 +182,7 @@ extension MainViewController {
 	func setupSegmentedControl() {
 		layoutableView.segmentedControl.addTarget(self, action: #selector(MainViewController.segmentedControlChanged(_:)), for: .valueChanged)
 	}
-
+	
 	@objc  func segmentedControlChanged(_ sender: UISegmentedControl) {
 		switch sender.selectedSegmentIndex {
 		case 0:
