@@ -23,7 +23,7 @@ final class PersonDetailView: UIView {
 		return view
 	}()
 
-	private lazy var profileImageView: UIImageView = {
+  lazy var profileImageView: UIImageView = {
 		let imageView = UIImageView()
 		imageView.contentMode = .scaleToFill
 		imageView.layer.cornerRadius = 6
@@ -45,7 +45,7 @@ final class PersonDetailView: UIView {
 		return label
 	}()
 
-	private lazy var birthdayLabel: UILabel = {
+  lazy var birthdayLabel: UILabel = {
 		let label = UILabel()
 		label.textColor = .black
 		return label
@@ -59,7 +59,7 @@ final class PersonDetailView: UIView {
 		return label
 	}()
 
-	private lazy var placeOfBirthLabel: UILabel = {
+  lazy var placeOfBirthLabel: UILabel = {
 		let label = UILabel()
 		label.textColor = .black
 		label.adjustsFontSizeToFitWidth = true
@@ -92,7 +92,7 @@ final class PersonDetailView: UIView {
 		return collectionView
 	}()
 
-	private lazy var biographyLabel: UILabel = {
+  lazy var biographyLabel: UILabel = {
 		let label = UILabel()
 		label.textColor = .black
 		label.numberOfLines = 0
@@ -128,11 +128,11 @@ extension PersonDetailView {
 
 // MARK: Configure View
 extension PersonDetailView {
-	func configureView(_ model: PersonDetails) {
-		profileImageView.kf.setImage(with: model.posterURL)
-		biographyLabel.text = model.biography
-		birthdayLabel.text = model.birthday
-		placeOfBirthLabel.text = model.placeOfBirth
+	func configureView(_ model: PersonDetails?) {
+    profileImageView.kf.setImage(with: model?.posterURL)
+		biographyLabel.text = model?.biography
+		birthdayLabel.text = model?.birthday
+    placeOfBirthLabel.text = model?.placeOfBirth
 	}
 }
 
