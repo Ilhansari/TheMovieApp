@@ -10,48 +10,39 @@ import Foundation
 
 struct CastDetail {
 
-	let name: String?
-	let originalTitle: String?
-	let profilePath: String?
-	let posterPath: String?
-	let character: String?
+  let name: String?
+  let originalTitle: String?
+  let profilePath: String?
+  let posterPath: String?
+  let character: String?
 
-	var profileURL: URL? {
-		guard let path = profilePath else { return nil }
-		return URL(string: "https://image.tmdb.org/t/p/w500\(path)")
-	}
+  var profileURL: URL? {
+    guard let path = profilePath else { return nil }
+    return URL(string: "https://image.tmdb.org/t/p/w500\(path)")
+  }
 
-	var posterURL: URL? {
-		guard let path = posterPath else { return nil }
-		return URL(string: "https://image.tmdb.org/t/p/w500\(path)")
-	}
+  var posterURL: URL? {
+    guard let path = posterPath else { return nil }
+    return URL(string: "https://image.tmdb.org/t/p/w500\(path)")
+  }
 }
 
 extension CastDetail: Codable {
-	enum CodingKeys: String, CodingKey {
-		case name
-		case originalTitle
-		case profilePath
-		case posterPath
-		case character
-	}
+  enum CodingKeys: String, CodingKey {
+    case name
+    case originalTitle
+    case profilePath
+    case posterPath
+    case character
+  }
 
-	init(from decoder: Decoder) throws {
-		let container = try decoder.container(keyedBy: CodingKeys.self)
+  init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
 
-		name = try container.decodeIfPresent(String.self, forKey: .name)
-		originalTitle = try container.decodeIfPresent(String.self, forKey: .originalTitle)
-		profilePath = try container.decodeIfPresent(String.self, forKey: .profilePath)
-		posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath)
-		character = try container.decodeIfPresent(String.self, forKey: .character)
-	}
-	
-	func encode(to encoder: Encoder) throws {
-		var container = encoder.container(keyedBy: CodingKeys.self)
-
-		try container.encodeIfPresent(name, forKey: .name)
-		try container.encodeIfPresent(profilePath, forKey: .profilePath)
-		try container.encodeIfPresent(posterPath, forKey: .posterPath)
-		try container.encodeIfPresent(character, forKey: .character)
-	}
+    name = try container.decodeIfPresent(String.self, forKey: .name)
+    originalTitle = try container.decodeIfPresent(String.self, forKey: .originalTitle)
+    profilePath = try container.decodeIfPresent(String.self, forKey: .profilePath)
+    posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath)
+    character = try container.decodeIfPresent(String.self, forKey: .character)
+  }
 }
