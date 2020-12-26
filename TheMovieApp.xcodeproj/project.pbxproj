@@ -244,10 +244,10 @@
 		01B11D2A256842DC00082B29 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				01A8CB00256A778800BC669B /* PersonDetail */,
 				01A8CAF42569B99000BC669B /* CastDetail */,
-				0103B3AF256992F6006C210B /* MovieDetail */,
 				01B11D2D2568438B00082B29 /* Main */,
+				0103B3AF256992F6006C210B /* MovieDetail */,
+				01A8CB00256A778800BC669B /* PersonDetail */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";

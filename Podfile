@@ -8,5 +8,7 @@ target 'TheMovieApp' do
   pod 'Kingfisher', '~> 5.0'
   pod 'Moya'
   pod 'SwiftLint'
+  pod 'RxSwift', '6.0.0-rc.2'
+  pod 'RxCocoa', '6.0.0-rc.2'
 
 end
