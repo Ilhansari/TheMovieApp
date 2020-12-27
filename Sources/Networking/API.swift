@@ -6,9 +6,17 @@
 //  Copyright © 2020 ilhan sarı. All rights reserved.
 //
 
-import UIKit
 import Moya
+import UIKit
 
 final class API {
-	static let moviesProvider = MoyaProvider<MoviesService>(plugins: [NetworkLoggerPlugin(configuration: .init(logOptions: .verbose))])
+	private static var plugins: [PluginType] {
+		#if DEBUG
+		return [NetworkLoggerPlugin(configuration: .init(logOptions: .verbose))]
+		#else
+		return []
+		#endif
+	}
+
+	static let moviesProvider = MoyaProvider<MoviesService>(plugins: plugins)
 }

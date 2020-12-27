@@ -11,7 +11,7 @@ import SnapKit
 
 final class CastDetailView: UIView {
 
-	//MARK: User Interface
+	// MARK: User Interface
 	lazy var tableView: UITableView = {
 		let tableView = UITableView(frame: .zero, style: .plain)
 		tableView.backgroundColor = .white
@@ -35,7 +35,7 @@ final class CastDetailView: UIView {
 	}
 }
 
-//MARK: Initialize UI and Constraints
+// MARK: Initialize UI and Constraints
 extension CastDetailView {
 	private func setupViews() {
 		addSubview(tableView)
@@ -54,7 +54,7 @@ extension CastDetailView {
 	}
 }
 
-//MARK: Activity Indicator Hide/Show
+// MARK: Activity Indicator Hide/Show
 extension CastDetailView {
 	func showActivityIndicator() {
 		activityIndicator.startAnimating()

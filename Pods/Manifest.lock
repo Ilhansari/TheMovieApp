@@ -7,26 +7,44 @@ PODS:
     - Moya/Core (= 14.0.0)
   - Moya/Core (14.0.0):
     - Alamofire (~> 5.0)
+  - RxCocoa (6.0.0-rc.2):
+    - RxRelay (= 6.0.0-rc.2)
+    - RxSwift (= 6.0.0-rc.2)
+  - RxRelay (6.0.0-rc.2):
+    - RxSwift (= 6.0.0-rc.2)
+  - RxSwift (6.0.0-rc.2)
   - SnapKit (5.0.1)
+  - SwiftLint (0.41.0)
 
 DEPENDENCIES:
   - Kingfisher (~> 5.0)
   - Moya
+  - RxCocoa (= 6.0.0-rc.2)
+  - RxSwift (= 6.0.0-rc.2)
   - SnapKit (~> 5.0.0)
+  - SwiftLint
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - Kingfisher
     - Moya
+    - RxCocoa
+    - RxRelay
+    - RxSwift
     - SnapKit
+    - SwiftLint
 
 SPEC CHECKSUMS:
   Alamofire: 3b6a534a3df22db367e4dedeeca73d1ddfcf0e2f
   Kingfisher: 6e1a13523fcb1c86924ce53affe4ac957e544d59
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
+  RxCocoa: 38445a25751be5907f52f7ea02c137f52ce2e7f2
+  RxRelay: b9e2483e83f46e4e7bf1234c6fe418e5c2eaf825
+  RxSwift: ada35be6643bedf6881cdbd6bbfb27aeea527670
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SwiftLint: c585ebd615d9520d7fbdbe151f527977b0534f1e
 
-PODFILE CHECKSUM: 56d70f8017f5cf0f9e5761ebfca723a0b3e2392e
+PODFILE CHECKSUM: fef762e925261d284269dd2f96fdae1cf01904cd
 
 COCOAPODS: 1.10.0

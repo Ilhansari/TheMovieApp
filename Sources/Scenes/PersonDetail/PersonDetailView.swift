@@ -12,7 +12,7 @@ import Kingfisher
 
 final class PersonDetailView: UIView {
 
-	//MARK: User Interface
+	// MARK: User Interface
 	lazy var scrollView: UIScrollView = {
 		let view = UIScrollView()
 		return view
@@ -23,7 +23,7 @@ final class PersonDetailView: UIView {
 		return view
 	}()
 
-	private lazy var profileImageView: UIImageView = {
+  lazy var profileImageView: UIImageView = {
 		let imageView = UIImageView()
 		imageView.contentMode = .scaleToFill
 		imageView.layer.cornerRadius = 6
@@ -45,7 +45,7 @@ final class PersonDetailView: UIView {
 		return label
 	}()
 
-	private lazy var birthdayLabel: UILabel = {
+  lazy var birthdayLabel: UILabel = {
 		let label = UILabel()
 		label.textColor = .black
 		return label
@@ -59,7 +59,7 @@ final class PersonDetailView: UIView {
 		return label
 	}()
 
-	private lazy var placeOfBirthLabel: UILabel = {
+  lazy var placeOfBirthLabel: UILabel = {
 		let label = UILabel()
 		label.textColor = .black
 		label.adjustsFontSizeToFitWidth = true
@@ -86,13 +86,13 @@ final class PersonDetailView: UIView {
 		let layout = UICollectionViewFlowLayout()
 		let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
 		layout.scrollDirection = .horizontal
-		collectionView.backgroundColor = .lightGray
+		collectionView.backgroundColor = .white
 		collectionView.showsHorizontalScrollIndicator = false
 		collectionView.register(CastCell.self, forCellWithReuseIdentifier: "CastCell")
 		return collectionView
 	}()
 
-	private lazy var biographyLabel: UILabel = {
+  lazy var biographyLabel: UILabel = {
 		let label = UILabel()
 		label.textColor = .black
 		label.numberOfLines = 0
@@ -104,6 +104,7 @@ final class PersonDetailView: UIView {
 		super.init(frame: frame)
 		setupViews()
 		setupLayout()
+		bottomAreaSetupLayout()
 	}
 
 	required init?(coder: NSCoder) {
@@ -112,7 +113,7 @@ final class PersonDetailView: UIView {
 
 }
 
-//MARK: Activity Indicator Hide/Show
+// MARK: Activity Indicator Hide/Show
 extension PersonDetailView {
 	func showActivityIndicator() {
 		activityIndicator.startAnimating()
@@ -125,17 +126,17 @@ extension PersonDetailView {
 	}
 }
 
-//MARK: Configure View
+// MARK: Configure View
 extension PersonDetailView {
-	func configureView(_ model: PersonDetailsModel) {
-		profileImageView.kf.setImage(with: model.posterURL)
-		biographyLabel.text = model.biography
-		birthdayLabel.text = model.birthday
-		placeOfBirthLabel.text = model.placeOfBirth
+	func configureView(_ model: PersonDetails?) {
+    profileImageView.kf.setImage(with: model?.posterURL)
+		biographyLabel.text = model?.biography
+		birthdayLabel.text = model?.birthday
+    placeOfBirthLabel.text = model?.placeOfBirth
 	}
 }
 
-//MARK: Initialize UI and Constraints
+// MARK: Initialize UI and Constraints
 extension PersonDetailView {
 	private func setupViews() {
 		backgroundColor = .white
@@ -211,6 +212,13 @@ extension PersonDetailView {
 			make.height.equalTo(80)
 		}
 
+		activityIndicator.snp.makeConstraints { make in
+			make.center.equalToSuperview()
+			make.width.height.equalTo(50)
+		}
+	}
+
+	private func bottomAreaSetupLayout() {
 		biographyTitleLabel.snp.makeConstraints { make in
 			make.top.equalTo(profileImageView.snp.bottom).offset(24)
 			make.leading.trailing.equalToSuperview().inset(6)
@@ -219,11 +227,6 @@ extension PersonDetailView {
 		biographyLabel.snp.makeConstraints { make in
 			make.leading.trailing.equalToSuperview().inset(6)
 			make.top.equalTo(biographyTitleLabel.snp.bottom).offset(8)
-		}
-
-		activityIndicator.snp.makeConstraints { make in
-			make.center.equalToSuperview()
-			make.width.height.equalTo(50)
 		}
 
 	}

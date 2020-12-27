@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "80314BE4-31BD-42B7-88CA-CE1519696853"
+            uuid = "A82FD8B3-D04C-423A-A590-1E940C70570B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Sources/Common/Cell/CastCell.swift"
+            filePath = "Sources/Networking/Manager/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "configure(model:)"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "getMovieCastDetails(movieId:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

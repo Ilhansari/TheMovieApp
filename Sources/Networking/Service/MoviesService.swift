@@ -10,10 +10,10 @@ import UIKit
 import Moya
 
 enum MoviesService {
-
+	
 	static private let apiKey = "2edd3456ac2d3b9996e13ee8f0f43a45"
-
-	case getMostPopularMovieList(page: Int)
+	
+	case getMostPopularMovieList
 	case getMostPopularMovieListDetail(id: Int)
 	case getMostPopularPersonList
 	case getMostPopularPersonListDetail(id: Int)
@@ -28,10 +28,10 @@ extension MoviesService: TargetType {
 		guard let url = URL(string: "https://api.themoviedb.org/3/") else {
 			fatalError("baseURL could not be configured.")
 		}
-
+		
 		return url
 	}
-
+	
 	var path: String {
 		switch self {
 		case .getMostPopularMovieList:
@@ -52,20 +52,20 @@ extension MoviesService: TargetType {
 			return "movie/\(id)/videos"
 		}
 	}
-
+	
 	var method: Moya.Method {
 		return .get
 	}
-
+	
 	var sampleData: Data {
 		return Data()
 	}
-
+	
 	var task: Task {
 		switch self {
-		case .getMostPopularMovieList(let page):
+		case .getMostPopularMovieList:
 			return .requestParameters(
-				parameters: ["api_key": MoviesService.apiKey, "page": page], encoding: URLEncoding.default)
+				parameters: ["api_key": MoviesService.apiKey], encoding: URLEncoding.default)
 		case .getMostPopularMovieListDetail,
 			 .getMostPopularPersonList,
 			 .getMostPopularPersonListDetail,
@@ -75,16 +75,16 @@ extension MoviesService: TargetType {
 			return .requestParameters(
 				parameters: ["api_key": MoviesService.apiKey], encoding: URLEncoding.default)
 		case .getSearchMovie(let query):
-			return .requestParameters(parameters: ["api_key": MoviesService.apiKey, "query" : query, "include_adult" : false], encoding: URLEncoding.default)
+			return .requestParameters(parameters: ["api_key": MoviesService.apiKey, "query": query, "include_adult": false], encoding: URLEncoding.default)
 		}
 	}
-
-	var headers: [String : String]? {
+	
+	var headers: [String: String]? {
 		return ["Content-Type": "application/json"]
 	}
-
+	
 	var validationType: ValidationType {
 		return .successCodes
 	}
-
+	
 }

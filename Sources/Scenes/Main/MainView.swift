@@ -11,10 +11,11 @@ import SnapKit
 
 final class MainView: UIView {
 
-	//MARK: User Interface
+	// MARK: User Interface
 	lazy var tableView: UITableView = {
 		let tableView = UITableView(frame: .zero, style: .plain)
 		tableView.backgroundColor = .white
+		tableView.register(CommonCell.self, forCellReuseIdentifier: "CommonCell")
 		return tableView
 	}()
 
@@ -22,6 +23,14 @@ final class MainView: UIView {
 		let view = UIActivityIndicatorView(style: .gray)
 		view.isHidden = true
 		return view
+	}()
+
+	lazy var toolBar: UIToolbar = {
+		let bar = UIToolbar()
+		bar.items = [
+			UIBarButtonItem(customView: segmentedControl)
+		]
+		return bar
 	}()
 
 	lazy var segmentedControl: UISegmentedControl = {
@@ -64,13 +73,13 @@ final class MainView: UIView {
 	}
 }
 
-//MARK: Initialize UI and Constraints
+// MARK: Initialize UI and Constraints
 extension MainView {
 	private func setupViews() {
 		backgroundColor = .white
 
 		addSubview(tableView)
-		addSubview(segmentedControl)
+		addSubview(toolBar)
 		addSubview(activityIndicator)
 		addSubview(emptyView)
 
@@ -81,14 +90,17 @@ extension MainView {
 	private func setupLayout() {
 		tableView.snp.makeConstraints { make in
 			make.leading.trailing.top.equalToSuperview()
-			make.bottom.equalTo(segmentedControl.snp.top)
 		}
 
-		segmentedControl.snp.makeConstraints { make in
-			make.width.equalToSuperview().multipliedBy(0.7)
-			make.height.equalTo(40)
+		toolBar.snp.makeConstraints { make in
+			make.top.equalTo(tableView.snp.bottom)
+			make.leading.trailing.equalToSuperview()
+			if #available(iOS 11.0, *) {
+				make.bottom.equalTo(safeAreaLayoutGuide)
+			} else {
+				make.bottom.equalToSuperview()
+			}
 			make.centerX.equalToSuperview()
-			make.bottom.equalToSuperview().inset(20)
 		}
 
 		activityIndicator.snp.makeConstraints { make in
@@ -114,7 +126,7 @@ extension MainView {
 	}
 }
 
-//MARK: Activity Indicator and Empty View Hide/Show
+// MARK: Activity Indicator and Empty View Hide/Show
 extension MainView {
 	func showActivityIndicator() {
 		activityIndicator.startAnimating()

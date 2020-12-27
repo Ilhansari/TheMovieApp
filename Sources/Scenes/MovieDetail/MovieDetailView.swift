@@ -12,7 +12,7 @@ import Kingfisher
 
 final class MovieDetailView: UIView {
 
-	//MARK: User Interface
+	// MARK: User Interface
 	private lazy var coverImageView: UIImageView = {
 		let imageView = UIImageView()
 		imageView.contentMode = .scaleToFill
@@ -86,7 +86,7 @@ final class MovieDetailView: UIView {
 	}
 }
 
-//MARK: Initialize UI and Constraints
+// MARK: Initialize UI and Constraints
 extension MovieDetailView {
 	private func setupViews() {
 		backgroundColor = .white
@@ -105,7 +105,7 @@ extension MovieDetailView {
 
 		coverImageView.snp.makeConstraints { make in
 			make.leading.trailing.equalToSuperview()
-			make.height.equalToSuperview().multipliedBy(0.3)
+			make.height.equalToSuperview().multipliedBy(0.4)
 			make.top.equalToSuperview()
 		}
 
@@ -147,25 +147,25 @@ extension MovieDetailView {
 	}
 }
 
-//MARK: Activity Indicator Hide/Show
+// MARK: Activity Indicator Hide/Show
 extension MovieDetailView {
 	func showActivityIndicator() {
 		activityIndicator.startAnimating()
 		activityIndicator.isHidden = false
 	}
-
+	
 	func hideActivityIndicator() {
 		activityIndicator.stopAnimating()
 		activityIndicator.isHidden = true
 	}
 }
 
-//MARK: Configure View
+// MARK: Configure View
 extension MovieDetailView {
-	func configureView(_ model: MovieDetailModel) {
+	func configureView(_ model: MovieDetail) {
 		coverImageView.kf.setImage(with: model.posterURL)
 		titleLabel.text = model.title
-		ratingLabel.text = model.voteAverage?.ratingText
+		ratingLabel.text = model.voteAverage.ratingText
 		summarySubLabel.text = model.overview
 	}
 }
