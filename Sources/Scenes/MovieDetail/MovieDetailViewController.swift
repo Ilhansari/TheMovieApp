@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class MovieDetailViewController: UIViewController {
 
@@ -19,16 +21,19 @@ final class MovieDetailViewController: UIViewController {
 	}
 
 	// MARK: Properties
-	private var movieId: Int
+	private var id: Int
 	private var networkManager: NetworkManager
-	private var videoKey: String?
+  private var movieDetailViewModel: MovieDetailViewModel!
+  private var videoKey: String?
+
+  private let disposeBag = DisposeBag()
 
 	override func loadView() {
 		view = MovieDetailView()
 	}
 
-	init(movieId: Int, networkManager: NetworkManager) {
-		self.movieId = movieId
+	init(id: Int, networkManager: NetworkManager) {
+		self.id = id
 		self.networkManager = networkManager
 		super.init(nibName: nil, bundle: nil)
 	}
@@ -41,14 +46,25 @@ final class MovieDetailViewController: UIViewController {
 		super.viewDidLoad()
 		setupView()
 	}
+
 }
 
 // MARK: Setup view and Target Buttons
 extension MovieDetailViewController {
 	private func setupView() {
-		fetchMovieDetail(movieId: movieId)
-		fetchMovieVideos()
+    movieDetailViewModel = MovieDetailViewModel(networkManager: networkManager, id: id)
 
+    movieDetailViewModel.isFetching.drive(self.layoutableView.activityIndicator.rx.isAnimating).disposed(by: disposeBag)
+
+    movieDetailViewModel.movieDetail.drive(onNext: { result in
+      guard let result = result else { return }
+      self.layoutableView.configureView(result)
+      }).disposed(by: disposeBag)
+
+    movieDetailViewModel.videoKey.drive(onNext: { key in
+      self.videoKey = key
+    }).disposed(by: disposeBag)
+    
 		layoutableView.castDetailButton.addTarget(self, action: #selector(didTapCastDetails), for: .touchUpInside)
 		layoutableView.trailerButton.addTarget(self, action: #selector(didTapVideoTrailer), for: .touchUpInside)
 
@@ -56,58 +72,14 @@ extension MovieDetailViewController {
 	}
 }
 
-// MARK: Networking
-extension MovieDetailViewController {
-	private func fetchMovieDetail(movieId: Int) {
-		layoutableView.showActivityIndicator()
-		networkManager.getMovieDetails(movieId: movieId) { [weak self] result in
-			guard let self = self else { return }
-			self.layoutableView.hideActivityIndicator()
-			self.layoutableView.configureView(result)
-		}
-	}
-
-	private func fetchMovieVideos() {
-		layoutableView.showActivityIndicator()
-		networkManager.getMovieVideos(movieId: movieId) { [weak self] response in
-			guard let self = self else { return }
-			self.layoutableView.hideActivityIndicator()
-			for videoKey in response.results {
-				self.videoKey = videoKey.key
-			}
-		}
-	}
-}
-
 // MARK: Actions
 extension MovieDetailViewController {
 	@objc func didTapCastDetails() {
-		let castDetailViewController = CastDetailViewController(movieId: movieId)
+		let castDetailViewController = CastDetailViewController(movieId: id)
 		self.navigationController?.pushViewController(castDetailViewController, animated: true)
 	}
 
 	@objc func didTapVideoTrailer() {
-		guard let videoKey = self.videoKey else {
-			return
-		}
-		loadYoutube(videoKey: videoKey)
-	}
-}
-
-// MARK: Setup Video Movies Trailer
-extension MovieDetailViewController {
-	func loadYoutube(videoKey: String) {
-
-		guard  let appURL = URL(string: "youtube://www.youtube.com/watch?v=\(videoKey)"),
-			let webURL = URL(string: "https://www.youtube.com/watch?v=\(videoKey)")
-			else { return }
-
-		let application = UIApplication.shared
-
-		if application.canOpenURL(appURL) {
-			application.open(appURL)
-		} else {
-			application.open(webURL)
-		}
+    movieDetailViewModel.loadYoutube(videoKey: self.videoKey)
 	}
 }

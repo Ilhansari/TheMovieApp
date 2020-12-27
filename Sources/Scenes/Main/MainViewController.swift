@@ -167,7 +167,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		guard let moviePersonId = moviePersonModel[indexPath.row].id else { return }
 		if isSectionMovie {
-			let movieDetailViewController = MovieDetailViewController(movieId: moviePersonId, networkManager: networkManager)
+      let movieDetailViewController = MovieDetailViewController(id: moviePersonId, networkManager: networkManager)
 			self.navigationController?.pushViewController(movieDetailViewController, animated: true)
 		} else {
 			let personDetailViewController = PersonDetailViewController(personId: moviePersonId, networkManager: networkManager)

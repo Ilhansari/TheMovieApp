@@ -24,7 +24,6 @@ final class PersonDetailViewController: UIViewController {
   // MARK: Properties
   private var personId: Int
   private var networkManager: NetworkManager
-  private var castsModel = [CastDetail]()
   private var castDetailListViewModel: CastDetailListViewModel!
   private var personDetailViewModel: PersonDetailViewModel!
 
