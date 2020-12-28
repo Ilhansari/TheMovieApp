@@ -33,13 +33,6 @@ class CastDetailListViewModel {
     return _castDetail.value.count
   }
 
-  func viewModelForCastDetail(at index: Int) -> CastDetailViewModel? {
-    guard index < numberOfCastDetail else { return nil }
-
-    return CastDetailViewModel(castDetails: _castDetail.value[index])
-
-  }
-
   func fetcCastDetails(personId: Int) {
     self._castDetail.accept([])
     self._isFetching.accept(true)

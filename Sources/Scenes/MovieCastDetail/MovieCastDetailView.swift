@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-final class CastDetailView: UIView {
+final class MovieCastDetailView: UIView {
 
 	// MARK: User Interface
 	lazy var tableView: UITableView = {
@@ -36,7 +36,7 @@ final class CastDetailView: UIView {
 }
 
 // MARK: Initialize UI and Constraints
-extension CastDetailView {
+extension MovieCastDetailView {
 	private func setupViews() {
 		addSubview(tableView)
 		addSubview(activityIndicator)
@@ -55,7 +55,7 @@ extension CastDetailView {
 }
 
 // MARK: Activity Indicator Hide/Show
-extension CastDetailView {
+extension MovieCastDetailView {
 	func showActivityIndicator() {
 		activityIndicator.startAnimating()
 		activityIndicator.isHidden = false

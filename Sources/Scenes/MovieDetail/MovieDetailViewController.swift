@@ -56,12 +56,14 @@ extension MovieDetailViewController {
 
     movieDetailViewModel.isFetching.drive(self.layoutableView.activityIndicator.rx.isAnimating).disposed(by: disposeBag)
 
-    movieDetailViewModel.movieDetail.drive(onNext: { result in
+    movieDetailViewModel.movieDetail.drive(onNext: { [weak self] result in
+      guard let self = self else { return }
       guard let result = result else { return }
       self.layoutableView.configureView(result)
       }).disposed(by: disposeBag)
 
-    movieDetailViewModel.videoKey.drive(onNext: { key in
+    movieDetailViewModel.videoKey.drive(onNext: { [weak self] key in
+      guard let self = self else { return }
       self.videoKey = key
     }).disposed(by: disposeBag)
     
@@ -75,7 +77,7 @@ extension MovieDetailViewController {
 // MARK: Actions
 extension MovieDetailViewController {
 	@objc func didTapCastDetails() {
-		let castDetailViewController = CastDetailViewController(movieId: id)
+    let castDetailViewController = MovieCastDetailViewController(networkManager: networkManager, movieId: id)
 		self.navigationController?.pushViewController(castDetailViewController, animated: true)
 	}
 

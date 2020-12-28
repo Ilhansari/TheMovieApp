@@ -62,7 +62,7 @@ extension PersonDetailViewController {
 
     personDetailViewModel.isFetching.drive(self.layoutableView.activityIndicator.rx.isAnimating).disposed(by: disposeBag)
 
-    castDetailListViewModel.castDetail.drive(onNext: { [weak self](_) in
+    castDetailListViewModel.castDetail.drive(onNext: { [weak self] _ in
       self?.layoutableView.castCollectionView.reloadData()
     }).disposed(by: disposeBag)
 
