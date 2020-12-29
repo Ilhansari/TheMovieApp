@@ -37,9 +37,9 @@ class CastDetailListViewModel {
     self._castDetail.accept([])
     self._isFetching.accept(true)
 
-    networkManager.getPersonCastDetails(movieId: personId) { [weak self] result in
+    networkManager.getPersonCastDetails(movieId: personId) { [weak self] response in
       self?._isFetching.accept(false)
-      self?._castDetail.accept(result.cast)
+      self?._castDetail.accept(response.cast)
     }
   }
 }

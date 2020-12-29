@@ -49,9 +49,9 @@ class PersonDetailViewModel {
 
   private func fetchPersonDetail(personId: Int) {
     self._isFetching.accept(true)
-    networkManager.getPersonDetails(personId: personId) { [weak self] result in
+    networkManager.getPersonDetails(personId: personId) { [weak self] response in
       self?._isFetching.accept(false)
-      self?.personDetails.accept(result)
+      self?.personDetails.accept(response)
     }
   }
 }
