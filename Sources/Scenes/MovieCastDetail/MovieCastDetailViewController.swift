@@ -23,6 +23,7 @@ final class MovieCastDetailViewController: UIViewController {
 	// MARK: Properties
   private var networkManager: NetworkManager
 	private var movieId: Int
+
   private var movieCastDetailViewModel: MovieCastDetailViewModel!
 
   private let disposeBag = DisposeBag()
