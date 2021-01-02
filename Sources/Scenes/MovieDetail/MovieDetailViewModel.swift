@@ -38,25 +38,28 @@ final class MovieDetailViewModel {
   private func fetchMovieDetail(id: Int) {
     _isFetching.accept(true)
     networkManager.getMovieDetails(movieId: id) { [weak self] response in
-      self?._isFetching.accept(false)
-      self?._movieDetail.accept(response)
+      guard let self = self else { return }
+
+      self._isFetching.accept(false)
+      self._movieDetail.accept(response)
     }
   }
 
   private func fetchMovieVideos(id: Int) {
     _isFetching.accept(true)
     networkManager.getMovieVideos(movieId: id) { [weak self] response in
-      self?._isFetching.accept(false)
+      guard let self = self else { return }
+
+      self._isFetching.accept(false)
       for videoKey in response.results {
-        self?._videoKey.accept(videoKey.key)
+        self._videoKey.accept(videoKey.key)
       }
     }
   }
 
   func loadYoutube(videoKey: String?) {
-    guard let videoKey = videoKey else { return }
-    
-    guard  let appURL = URL(string: "youtube://www.youtube.com/watch?v=\(videoKey)"),
+    guard let videoKey = videoKey,
+      let appURL = URL(string: "youtube://www.youtube.com/watch?v=\(videoKey)"),
       let webURL = URL(string: "https://www.youtube.com/watch?v=\(videoKey)")
       else { return }
 

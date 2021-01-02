@@ -56,14 +56,18 @@ extension PersonDetailViewController {
     personDetailViewModel = PersonDetailViewModel(networkManager: networkManager, personId: personId)
     castDetailListViewModel = CastDetailListViewModel(networkManager: networkManager, personId: personId)
 
-    personDetailViewModel.personDetail.drive(onNext: { [weak self] result in
-      self?.layoutableView.configureView(result)
+    personDetailViewModel.personDetail.map { $0 }.drive(onNext: { [weak self] result in
+      guard let self = self else { return }
+
+      self.layoutableView.configureView(result)
     }).disposed(by: disposeBag)
 
     personDetailViewModel.isFetching.drive(self.layoutableView.activityIndicator.rx.isAnimating).disposed(by: disposeBag)
 
     castDetailListViewModel.castDetail.drive(onNext: { [weak self] _ in
-      self?.layoutableView.castCollectionView.reloadData()
+      guard let self = self else { return }
+
+      self.layoutableView.castCollectionView.reloadData()
     }).disposed(by: disposeBag)
 
     castDetailListViewModel.isFetching.drive(self.layoutableView.activityIndicator.rx.isAnimating).disposed(by: disposeBag)

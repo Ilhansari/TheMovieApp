@@ -10,6 +10,7 @@ import UIKit
 import Kingfisher
 import RxSwift
 import RxCocoa
+
 class PersonDetailViewModel {
 
   private var personDetails = BehaviorRelay<PersonDetails?>(value: nil)
