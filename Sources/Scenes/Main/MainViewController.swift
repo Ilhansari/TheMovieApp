@@ -65,7 +65,6 @@ final class MainViewController: UIViewController {
 		fetchPopularMovies()
 		setupSegmentedControl()
 	}
-
 }
 
 // MARK: Configure TableView, SearchController
