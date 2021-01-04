@@ -71,7 +71,7 @@ final class MainViewController: UIViewController {
 extension MainViewController {
 	private func setupSearchBarController() {
 		layoutableView.tableView.tableHeaderView = searchController.searchBar
-		searchController.searchBar.placeholder = "Search..."
+		searchController.searchBar.placeholder = "Search.."
 		searchController.searchBar.tintColor = UIColor.black
 		searchController.searchBar.barTintColor = .white
 		searchController.searchResultsUpdater = self
