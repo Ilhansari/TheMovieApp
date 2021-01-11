@@ -16,7 +16,7 @@ final class DefaultDecoder: JSONDecoder {
 }
 
 protocol NetworkProtocol {
-	func getPopularMoviesList(completionHandler: @escaping (MoviePersonResponse) -> Void)
+  func getPopularMoviesList(page: Int, completionHandler: @escaping (MoviePersonResponse) -> Void)
 	func getMovieDetails(movieId: Int, completionHandler: @escaping (MovieDetail) -> Void)
 	func getPopularPersonList(completionHandler: @escaping (MoviePersonResponse) -> Void)
 	func getPersonDetails(personId: Int, completionHandler: @escaping (PersonDetails) -> Void)
@@ -28,8 +28,8 @@ protocol NetworkProtocol {
 
 class NetworkManager: UIViewController, NetworkProtocol {
 
-	func getPopularMoviesList(completionHandler: @escaping (MoviePersonResponse) -> Void) {
-		API.moviesProvider.request(.getMostPopularMovieList) { [weak self] result in
+  func getPopularMoviesList(page: Int, completionHandler: @escaping (MoviePersonResponse) -> Void) {
+    API.moviesProvider.request(.getMostPopularMovieList(page: page)) { [weak self] result in
 
 			guard let self = self else { return }
 			
