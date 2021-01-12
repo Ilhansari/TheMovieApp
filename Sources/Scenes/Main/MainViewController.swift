@@ -180,11 +180,12 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
   }
 
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    guard totalPages != self.page else { return }
+    
     if scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.frame.size.height {
       fetchPopularMovies(page: self.page)
       self.page += 1
     }
-    guard totalPages == self.page else { return }
   }
 }
 
