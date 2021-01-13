@@ -13,7 +13,7 @@ enum MoviesService {
 
   static private let apiKey = "2edd3456ac2d3b9996e13ee8f0f43a45"
 
-  case getMostPopularMovieList(page: Int)
+  case getMostPopularMovieList
   case getMostPopularMovieListDetail(id: Int)
   case getMostPopularPersonList
   case getMostPopularPersonListDetail(id: Int)
@@ -63,9 +63,9 @@ extension MoviesService: TargetType {
 
   var task: Task {
     switch self {
-    case let .getMostPopularMovieList(page):
+    case .getMostPopularMovieList:
       return .requestParameters(
-        parameters: ["api_key": MoviesService.apiKey, "page": page], encoding: URLEncoding.default)
+        parameters: ["api_key": MoviesService.apiKey], encoding: URLEncoding.default)
     case .getMostPopularMovieListDetail,
          .getMostPopularPersonList,
          .getMostPopularPersonListDetail,

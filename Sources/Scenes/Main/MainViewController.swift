@@ -22,9 +22,6 @@ final class MainViewController: UIViewController {
   private let searchController = UISearchController(searchResultsController: nil)
 
   private var isSectionMovie: Bool = true
-  private var page: Int = 1
-  private var totalPages: Int = 0
-
   private var isSearchBarEmpty: Bool {
     return searchController.searchBar.text?.isEmpty ?? true
   }
@@ -65,7 +62,7 @@ final class MainViewController: UIViewController {
   private func setupView() {
     setupSearchBarController()
     setupTableView()
-    fetchPopularMovies(page: page)
+    fetchPopularMovies()
     setupSegmentedControl()
   }
 }
@@ -120,15 +117,14 @@ extension MainViewController {
 
 // MARK: Networking
 extension MainViewController {
-  private func fetchPopularMovies(page: Int) {
+  private func fetchPopularMovies() {
     state = .loading
     moviePersonModel = []
-    networkManager.getPopularMoviesList(page: page) { [weak self] moviesResponse in
+    networkManager.getPopularMoviesList { [weak self] moviesResponse in
       guard let self = self else { return }
       self.state = .ready
       self.moviePersonModel.append(contentsOf: moviesResponse.results)
-      self.totalPages = moviesResponse.totalPages
-      self.filteredMoviePersonModel.append(contentsOf: self.moviePersonModel)
+      self.filteredMoviePersonModel = self.moviePersonModel
       self.layoutableView.tableView.reloadData()
     }
   }
@@ -178,15 +174,6 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     }
     tableView.deselectRow(at: indexPath, animated: false)
   }
-
-  func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    guard totalPages != self.page else { return }
-    
-    if scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.frame.size.height {
-      fetchPopularMovies(page: self.page)
-      self.page += 1
-    }
-  }
 }
 
 // MARK: Setup Segmented Control
@@ -198,7 +185,7 @@ extension MainViewController {
   @objc  func segmentedControlChanged(_ sender: UISegmentedControl) {
     switch sender.selectedSegmentIndex {
     case 0:
-      fetchPopularMovies(page: self.page)
+      fetchPopularMovies()
       self.isSectionMovie = true
       navigationItem.title = "Popular Movies"
     case 1:
@@ -206,7 +193,7 @@ extension MainViewController {
       self.isSectionMovie = false
       navigationItem.title = "Popular Actors"
     default:
-      fetchPopularMovies(page: self.page)
+      fetchPopularMovies()
       self.isSectionMovie = true
       navigationItem.title = "Popular Movies"
     }
