@@ -15,15 +15,15 @@ final class MovieCastDetailViewModel {
   private let networkManager: NetworkManager
   private let _movieCastDetail = BehaviorRelay<[CastDetail]>(value: [])
   private let _isFetching = BehaviorRelay<Bool>(value: false)
-
+  
   var isFetching: Driver<Bool> {
     return _isFetching.asDriver()
   }
-
+  
   var movieCastDetail: Driver<[CastDetail]> {
     return _movieCastDetail.asDriver()
   }
-
+  
   var numberOfMovieCastDetailCount: Int {
     return _movieCastDetail.value.count
   }
@@ -32,7 +32,7 @@ final class MovieCastDetailViewModel {
     self.networkManager = networkManager
     self.fetchCastDetails(id: id)
   }
-
+  
   func fetchCastDetails(id: Int) {
     self._isFetching.accept(true)
     networkManager.getMovieCastDetails(movieId: id) { [weak self] response in
