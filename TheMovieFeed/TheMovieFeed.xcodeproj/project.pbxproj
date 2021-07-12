@@ -71,9 +71,8 @@
 		0F7B6BCE26983284003BF6B1 /* TheMovieFeed */ = {
 			isa = PBXGroup;
 			children = (
+				0F9280CF269C275B005AA7D6 /* Feed Feature */,
 				0F7B6BD026983284003BF6B1 /* Info.plist */,
-				0F9280C3269C1E66005AA7D6 /* MovieFeedItem.swift */,
-				0F9280CB269C2648005AA7D6 /* MovieFeedLoader.swift */,
 			);
 			path = TheMovieFeed;
 			sourceTree = "<group>";
@@ -84,6 +83,15 @@
 				0F7B6BDC26983284003BF6B1 /* Info.plist */,
 			);
 			path = TheMovieFeedTests;
+			sourceTree = "<group>";
+		};
+		0F9280CF269C275B005AA7D6 /* Feed Feature */ = {
+			isa = PBXGroup;
+			children = (
+				0F9280C3269C1E66005AA7D6 /* MovieFeedItem.swift */,
+				0F9280CB269C2648005AA7D6 /* MovieFeedLoader.swift */,
+			);
+			path = "Feed Feature";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
