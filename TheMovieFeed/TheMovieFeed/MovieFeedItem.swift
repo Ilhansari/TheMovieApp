@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PopularMovieItem {
+struct MovieFeedItem {
     var posterPath: String?
     var adult: Bool?
     var overview: String?
