@@ -10,6 +10,7 @@
 		0F7B6BD626983284003BF6B1 /* TheMovieFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F7B6BCC26983284003BF6B1 /* TheMovieFeed.framework */; };
 		0F9280C4269C1E66005AA7D6 /* MovieFeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9280C3269C1E66005AA7D6 /* MovieFeedItem.swift */; };
 		0F9280CC269C2648005AA7D6 /* MovieFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9280CB269C2648005AA7D6 /* MovieFeedLoader.swift */; };
+		0F9613B526B13ECB00B016AB /* RemoteFeedLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9613B426B13ECB00B016AB /* RemoteFeedLoaderTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		0F7B6BDC26983284003BF6B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F9280C3269C1E66005AA7D6 /* MovieFeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieFeedItem.swift; sourceTree = "<group>"; };
 		0F9280CB269C2648005AA7D6 /* MovieFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieFeedLoader.swift; sourceTree = "<group>"; };
+		0F9613B426B13ECB00B016AB /* RemoteFeedLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedLoaderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				0F7B6BDC26983284003BF6B1 /* Info.plist */,
+				0F9613B426B13ECB00B016AB /* RemoteFeedLoaderTests.swift */,
 			);
 			path = TheMovieFeedTests;
 			sourceTree = "<group>";
@@ -158,6 +161,7 @@
 					};
 					0F7B6BD426983284003BF6B1 = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1250;
 					};
 				};
 			};
@@ -211,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F9613B526B13ECB00B016AB /* RemoteFeedLoaderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +406,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 22SW3CPUDS;
@@ -412,6 +418,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.practice.TheMovieFeedTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -420,6 +427,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 22SW3CPUDS;
