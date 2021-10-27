@@ -8,8 +8,31 @@
 import Foundation
 
 public struct MovieFeedItem: Equatable {
-    var id: Int?
-    var posterPath: String?
-    var overview: String?
-    var originalTitle: String?
+    public let posterPath: String?
+    public let overview: String
+    public let id: Int
+    public let originalTitle: String
+    public let backdropPath: String?
+
+    public init(posterPath: String?,
+                overview: String,
+                id: Int,
+                originalTitle: String,
+                backdropPath: String?) {
+        self.posterPath = posterPath
+        self.overview = overview
+        self.id = id
+        self.originalTitle = originalTitle
+        self.backdropPath = backdropPath
+    }
+}
+
+extension MovieFeedItem: Decodable {
+    private enum CodingKeys: String, CodingKey {
+        case posterPath = "poster_path"
+        case overview
+        case id
+        case originalTitle = "original_title"
+        case backdropPath = "backdrop_path"
+    }
 }
