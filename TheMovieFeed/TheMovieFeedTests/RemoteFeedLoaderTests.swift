@@ -72,7 +72,6 @@ class RemoteFeedLoaderTests: XCTestCase {
             let emptyListJSON = Data("{\"results\": []}".utf8)
             client.complete(withStatusCode: 200, data: emptyListJSON)
         }
-        
     }
 
     func test_load_deliversErrorOn200HTTPResponseWithJSONItems() {
@@ -84,22 +83,25 @@ class RemoteFeedLoaderTests: XCTestCase {
                                   originalTitle: "Superman",
                                   backdropPath: "/ndlQ2Cuc3cjTL7lTynw6I4boP4S.jpg")
 
-        let item1JSON: [String: Any] = ["poster_path": item1.posterPath ?? "",
-                                        "overview": item1.overview,
-                                        "id": item1.id,
-                                        "original_title": item1.originalTitle,
-                                        "backdrop_path": item1.backdropPath ?? ""]
-
+        let item1JSON: [String: Any] = [
+            "poster_path": item1.posterPath ?? "",
+            "overview": item1.overview,
+            "id": item1.id,
+            "original_title": item1.originalTitle,
+            "backdrop_path": item1.backdropPath ?? ""
+        ]
 
         let item2 = MovieFeedItem(posterPath: nil,
                                   overview: "/e1mjopzAS2KNsvpbpahQ1a6SkSn.jpg",
-                                  id: 112312,
+                                  id: 112313,
                                   originalTitle: "Superman",
                                   backdropPath: nil)
 
-        let item2JSON: [String: Any] = ["overview": item2.overview,
-                                        "id": item2.id,
-                                        "original_title": item2.originalTitle]
+        let item2JSON: [String: Any] = [
+            "overview": item2.overview,
+            "id": item2.id,
+            "original_title": item2.originalTitle
+        ]
 
         let itemJSON = [
             "results": [item1JSON, item2JSON]
