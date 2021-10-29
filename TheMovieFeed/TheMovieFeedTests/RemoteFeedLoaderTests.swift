@@ -77,38 +77,20 @@ class RemoteFeedLoaderTests: XCTestCase {
     func test_load_deliversErrorOn200HTTPResponseWithJSONItems() {
         let (sut, client) = makeSUT()
 
-        let item1 = MovieFeedItem(posterPath: "From about NewYork",
-                                  overview: "/e1mjopzAS2KNsvpbpahQ1a6SkSn.jpg",
-                                  id: 112312,
-                                  originalTitle: "Superman",
-                                  backdropPath: "/ndlQ2Cuc3cjTL7lTynw6I4boP4S.jpg")
+        let item1 = makeItem(posterPath: "From about NewYork",
+                             overview: "/e1mjopzAS2KNsvpbpahQ1a6SkSn.jpg",
+                             id: 112312,
+                             originalTitle: "Superman",
+                             backdropPath: "/ndlQ2Cuc3cjTL7lTynw6I4boP4S.jpg")
 
-        let item1JSON: [String: Any] = [
-            "poster_path": item1.posterPath ?? "",
-            "overview": item1.overview,
-            "id": item1.id,
-            "original_title": item1.originalTitle,
-            "backdrop_path": item1.backdropPath ?? ""
-        ]
+        let item2 = makeItem(overview: "/e1mjopzAS2KNsvpbpahQ1a6SkSn.jpg",
+                             id: 112313,
+                             originalTitle: "Superman")
 
-        let item2 = MovieFeedItem(posterPath: nil,
-                                  overview: "/e1mjopzAS2KNsvpbpahQ1a6SkSn.jpg",
-                                  id: 112313,
-                                  originalTitle: "Superman",
-                                  backdropPath: nil)
+        let items = [item1.model, item2.model]
 
-        let item2JSON: [String: Any] = [
-            "overview": item2.overview,
-            "id": item2.id,
-            "original_title": item2.originalTitle
-        ]
-
-        let itemJSON = [
-            "results": [item1JSON, item2JSON]
-        ]
-
-        expect(sut, toCompleteWith: .success([item1, item2])) {
-            let data = try! JSONSerialization.data(withJSONObject: itemJSON)
+        expect(sut, toCompleteWith: .success(items)) {
+            let data = makeItemJSON([item1.json, item2.json])
             client.complete(withStatusCode: 200, data: data)
         }
     }
@@ -120,6 +102,27 @@ class RemoteFeedLoaderTests: XCTestCase {
         let client = HTTPClientSpy()
         let sut = RemoteFeedLoader(url: url, client: client)
         return (sut, client)
+    }
+
+    private func makeItem(posterPath: String? = nil, overview: String, id: Int, originalTitle: String, backdropPath: String? = nil) -> (model: MovieFeedItem, json: [String: Any]) {
+
+        let item = MovieFeedItem(posterPath: posterPath, overview: overview, id: id, originalTitle: originalTitle, backdropPath: backdropPath)
+
+        let json: [String: Any] = [
+            "poster_path": posterPath,
+            "overview": overview,
+            "id": id,
+            "original_title": originalTitle,
+            "backdrop_path": backdropPath
+        ]
+
+        return (item, json)
+    }
+
+    private func makeItemJSON(_ items: [[String: Any]]) -> Data {
+        let json = ["results": items]
+        return try! JSONSerialization.data(withJSONObject: json)
+
     }
 
     private func expect(_ sut: RemoteFeedLoader,
