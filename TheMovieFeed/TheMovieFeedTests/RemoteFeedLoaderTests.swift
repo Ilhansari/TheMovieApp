@@ -51,7 +51,8 @@ class RemoteFeedLoaderTests: XCTestCase {
 
         samples.enumerated().forEach { index, code in
             expect(sut, toCompleteWith: .failure(.invalidData)) {
-                client.complete(withStatusCode: code, at: index)
+                let json = makeItemJSON([])
+                client.complete(withStatusCode: code, data: json, at: index)
             }
         }
     }
@@ -96,7 +97,6 @@ class RemoteFeedLoaderTests: XCTestCase {
     }
 
     // MARK: - Helpers
-    
     private func makeSUT(url: URL = URL(string: "https://a-url.com")!) -> (sut: RemoteFeedLoader,
                                                                            client: HTTPClientSpy) {
         let client = HTTPClientSpy()
@@ -104,9 +104,17 @@ class RemoteFeedLoaderTests: XCTestCase {
         return (sut, client)
     }
 
-    private func makeItem(posterPath: String? = nil, overview: String, id: Int, originalTitle: String, backdropPath: String? = nil) -> (model: MovieFeedItem, json: [String: Any]) {
+    private func makeItem(posterPath: String? = nil,
+                          overview: String, id: Int,
+                          originalTitle: String,
+                          backdropPath: String? = nil) -> (model: MovieFeedItem,
+                                                           json: [String: Any]) {
 
-        let item = MovieFeedItem(posterPath: posterPath, overview: overview, id: id, originalTitle: originalTitle, backdropPath: backdropPath)
+        let item = MovieFeedItem(posterPath: posterPath,
+                                 overview: overview,
+                                 id: id,
+                                 originalTitle: originalTitle,
+                                 backdropPath: backdropPath)
 
         let json: [String: Any] = [
             "poster_path": posterPath,
@@ -156,7 +164,7 @@ class RemoteFeedLoaderTests: XCTestCase {
         }
 
         func complete(withStatusCode code: Int,
-                      data: Data = Data(),
+                      data: Data,
                       at index: Int = 0) {
             let response = HTTPURLResponse(url: requestedURLs[index], statusCode: code,
                                            httpVersion: nil,
