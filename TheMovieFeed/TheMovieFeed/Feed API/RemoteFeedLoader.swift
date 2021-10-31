@@ -56,24 +56,24 @@ public class RemoteFeedLoader {
 private class MovieFeedItemsMapper {
 
     private struct Root: Decodable {
-       let results: [Item]
+        let results: [Item]
     }
 
-   private struct Item: Decodable {
-       let poster_path: String?
-       let overview: String
-       let id: Int
-       let original_title: String
-       let backdrop_path: String?
+    private struct Item: Decodable {
+        let poster_path: String?
+        let overview: String
+        let id: Int
+        let original_title: String
+        let backdrop_path: String?
 
-       var movieFeedItem: MovieFeedItem {
-           return MovieFeedItem(posterPath: poster_path,
-                                overview: overview,
-                                id: id,
-                                originalTitle: original_title,
-                                backdropPath: backdrop_path)
-       }
-   }
+        var movieFeedItem: MovieFeedItem {
+            return MovieFeedItem(posterPath: poster_path,
+                                 overview: overview,
+                                 id: id,
+                                 originalTitle: original_title,
+                                 backdropPath: backdrop_path)
+        }
+    }
 
     static var OK_200: Int {
         return 200
