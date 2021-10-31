@@ -26,13 +26,3 @@ public struct MovieFeedItem: Equatable {
         self.backdropPath = backdropPath
     }
 }
-
-extension MovieFeedItem: Decodable {
-    private enum CodingKeys: String, CodingKey {
-        case posterPath = "poster_path"
-        case overview
-        case id
-        case originalTitle = "original_title"
-        case backdropPath = "backdrop_path"
-    }
-}
