@@ -40,9 +40,10 @@ public class RemoteFeedLoader {
         client.get(from: url) { result in
             switch result {
             case let .success(data, response):
-                if response.statusCode == 200, let root = try? JSONDecoder().decode(Root.self, from: data) {
-                    completion(.success(root.results.map({ $0.movieFeedItem })))
-                } else {
+                do {
+                    let items = try MovieFeedItemsMapper.map(data, response)
+                    completion(.success(items))
+                } catch {
                     completion(.failure(.invalidData))
                 }
             case .failure:
@@ -52,22 +53,37 @@ public class RemoteFeedLoader {
     }
 }
 
- private struct Root: Decodable {
-    let results: [Result]
- }
+private class MovieFeedItemsMapper {
 
-private struct Result: Decodable {
-    let poster_path: String?
-    let overview: String
-    let id: Int
-    let original_title: String
-    let backdrop_path: String?
+    private struct Root: Decodable {
+       let results: [Item]
+    }
 
-    var movieFeedItem: MovieFeedItem {
-        return MovieFeedItem(posterPath: poster_path,
-                             overview: overview,
-                             id: id,
-                             originalTitle: original_title,
-                             backdropPath: backdrop_path)
+   private struct Item: Decodable {
+       let poster_path: String?
+       let overview: String
+       let id: Int
+       let original_title: String
+       let backdrop_path: String?
+
+       var movieFeedItem: MovieFeedItem {
+           return MovieFeedItem(posterPath: poster_path,
+                                overview: overview,
+                                id: id,
+                                originalTitle: original_title,
+                                backdropPath: backdrop_path)
+       }
+   }
+
+    static var OK_200: Int {
+        return 200
+    }
+
+    static func map(_ data: Data, _ response: HTTPURLResponse) throws -> [MovieFeedItem] {
+        guard response.statusCode == OK_200 else {
+            throw RemoteFeedLoader.Error.invalidData
+        }
+        let root = try JSONDecoder().decode(Root.self, from: data)
+        return root.results.map({ $0.movieFeedItem })
     }
 }
