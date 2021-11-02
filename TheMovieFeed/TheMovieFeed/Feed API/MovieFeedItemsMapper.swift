@@ -11,6 +11,10 @@ class MovieFeedItemsMapper {
 
     private struct Root: Decodable {
         let results: [Item]
+
+        var feed: [MovieFeedItem] {
+            return results.map { $0.movieFeedItem }
+        }
     }
 
     private struct Item: Decodable {
@@ -31,11 +35,11 @@ class MovieFeedItemsMapper {
 
     static var OK_200: Int { return 200 }
 
-    static func map(_ data: Data, _ response: HTTPURLResponse) throws -> [MovieFeedItem] {
-        guard response.statusCode == OK_200 else {
-            throw RemoteFeedLoader.Error.invalidData
+    static func map(_ data: Data, from response: HTTPURLResponse) -> RemoteFeedLoader.Result {
+        guard response.statusCode == OK_200,
+              let root = try? JSONDecoder().decode(Root.self, from: data) else {
+            return .failure(RemoteFeedLoader.Error.invalidData)
         }
-        let root = try JSONDecoder().decode(Root.self, from: data)
-        return root.results.map { $0.movieFeedItem }
+        return .success(root.feed)
     }
 }
