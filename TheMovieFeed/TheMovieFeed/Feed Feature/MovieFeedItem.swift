@@ -8,6 +8,7 @@
 import Foundation
 
 public struct MovieFeedItem: Equatable {
+
     public let posterPath: String?
     public let overview: String
     public let id: Int
